@@ -3,7 +3,7 @@
 
 void test_insert() {
   try {
-    Set s;
+    Set<int> s;
     string set_str = s.to_string();
     if (s.to_string() != "") {
       cout << "Incorrect insert result. Expected nothing but got : " << set_str << endl;
@@ -28,7 +28,7 @@ void test_insert() {
 
 void test_remove() {
   try {
-    Set s;
+    Set<int> s;
     s.remove(4);
     string set_str = s.to_string();
     if (s.to_string() != "") {
@@ -62,7 +62,7 @@ void test_remove() {
 
 void test_cardinality() {
   try {
-    Set s;
+    Set<int> s;
     int c = s.cardinality();
     if(c != 0) {
       cout << "Incorrect cardinality. Expected 0 but got : " << c << endl;
@@ -89,7 +89,7 @@ void test_cardinality() {
 
 void test_empty() {
   try {
-    Set s;
+    Set<int> s;
     if(!s.empty()){
       cout << "Empty set identified as non-empty" << endl;
     }
@@ -113,7 +113,7 @@ void test_empty() {
 
 void test_contains() {
   try {
-    Set s;
+    Set<int> s;
     if(s.contains(5)) {
       cout << "Incorrectly identified 5 as in the set " << s.to_string() << endl;
     }
@@ -133,8 +133,8 @@ void test_contains() {
 
 void test_equality() {
   try {
-    Set s;
-    Set t;
+    Set<int> s;
+    Set<int> t;
     if(!(s==t)) {
       cout << "Empty sets should be considered equal" << endl;
     }
@@ -161,8 +161,8 @@ void test_equality() {
 
 void test_subset() {
   try {
-    Set s;
-    Set t;
+    Set<int> s;
+    Set<int> t;
     if(!(s<=t)) {
       cout << "Set " << s.to_string() << " should be considered a subset of the set " << t.to_string() << endl;
     }
@@ -191,8 +191,8 @@ void test_subset() {
 
 void test_union() {
   try {
-    Set s;
-    Set t;
+    Set<int> s;
+    Set<int> t;
     string set_str = (s+t).to_string();
     if(set_str != "") {
       cout << "Union of the empty sets should be the empty set. Instead got :" << set_str << endl;
@@ -217,8 +217,8 @@ void test_union() {
 
 void test_intersection() {
   try {
-    Set s;
-    Set t;
+    Set<int> s;
+    Set<int> t;
     string set_str = (s&t).to_string();
     if(set_str != "") {
       cout << "Intersection of the empty sets should be the empty set. Instead got : " << set_str << endl;
@@ -243,8 +243,8 @@ void test_intersection() {
 
 void test_diff() {
   try {
-    Set s;
-    Set t;
+    Set<int> s;
+    Set<int> t;
     string set_str = (s-t).to_string();
     if(set_str != "") {
       cout << "Difference of the empty sets should be the empty set. Instead got : " << set_str << endl;
@@ -270,14 +270,14 @@ void test_diff() {
 int main() {
     test_insert();
     test_remove();
-    // test_cardinality();
-    // test_empty();
-    // test_contains();
-    // test_equality();
-    // test_subset();
-    // test_union();
-    // test_intersection();
-    // test_diff();
+    test_cardinality();
+    test_empty();
+    test_contains();
+    test_equality();
+    test_subset();
+    test_union();
+    test_intersection();
+    test_diff();
     
     cout << "Testing completed" << endl;
     

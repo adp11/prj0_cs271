@@ -1,41 +1,47 @@
 #include <sstream>
 #include "set.h"
 
-Node::Node(int initValue) {
+template <class T>
+Node<T>::Node(T initValue) {
   value = initValue;
   next = NULL;
 }
 
-Node::Node(int initValue, Node *initNext) {
+template <class T>
+Node<T>::Node(T initValue, Node *initNext) {
   value = initValue;
   next = initNext;
 }
 
-Set::Set() {
+template <class T>
+Set<T>::Set() {
   head = NULL;
   count = 0;
 }
 
-Set::~Set() {
+template <class T>
+Set<T>::~Set() {
   deallocate();
 }
 
-void Set::insert(int item) {
+template <class T>
+void Set<T>::insert(T item) {
   if (!this->contains(item)) {
     if (head == NULL) { // set is empty
-        Node *newNode = new Node(item);
+        Node<T> *newNode = new Node(item);
         head = newNode;
       } else {
-        Node *newNode = new Node(item, head);
+        Node<T> *newNode = new Node(item, head);
         head = newNode;
       }
     count++;
   }
 }
 
-void Set::remove(int item) {
-  Node *current = head;
-  Node *prev = NULL;
+template <class T>
+void Set<T>::remove(T item) {
+  Node<T> *current = head;
+  Node<T> *prev = NULL;
 
   if (current != NULL && current->value == item) { // delete at the head
     head = current->next;
@@ -57,16 +63,19 @@ void Set::remove(int item) {
   }
 }
 
-int Set::cardinality() {
+template <class T>
+int Set<T>::cardinality() {
   return count;
 }
 
-bool Set::empty() {
+template <class T>
+bool Set<T>::empty() {
   return count == 0;
 }
 
-bool Set::contains(int item) {
-  Node *current = head;
+template <class T>
+bool Set<T>::contains(T item) {
+  Node<T> *current = head;
   while (current != NULL) {
     if (current->value == item) {
       return true;
@@ -76,14 +85,15 @@ bool Set::contains(int item) {
   return false;
 }
 
-string Set::to_string()
+template <class T>
+string Set<T>::to_string()
 {
   if (head == NULL)
     return "";
 
   std::stringstream ss;
 
-  Node *current = head;
+  Node<T> *current = head;
   while (current != NULL)
   {
     if (current->next == NULL) {
@@ -97,10 +107,11 @@ string Set::to_string()
   return ss.str();
 }
 
-void Set::deallocate()
+template <class T>
+void Set<T>::deallocate()
 {
-  Node *nodeToDelete;
-  Node *current = head;
+  Node<T> *nodeToDelete;
+  Node<T> *current = head;
 
   while (current != NULL)
   {
@@ -110,9 +121,10 @@ void Set::deallocate()
   }
 }
 
-bool Set::operator==(Set& other) {
+template <class T>
+bool Set<T>::operator==(Set& other) {
   if (count == other.count) {
-    Node *current = other.head;
+    Node<T> *current = other.head;
     while (current != NULL) {
       if (this->contains(current->value)) {
         current = current->next;
@@ -125,8 +137,9 @@ bool Set::operator==(Set& other) {
   return false;
 }
 
-bool Set::operator<=(Set& other) {
-  Node *current = head;
+template <class T>
+bool Set<T>::operator<=(Set& other) {
+  Node<T> *current = head;
   while (current != NULL) {
     if (other.contains(current->value)) {
       current = current->next;
@@ -137,10 +150,11 @@ bool Set::operator<=(Set& other) {
   return true;
 }
 
-Set Set::operator+(Set& other) {
+template <class T>
+Set<T> Set<T>::operator+(Set& other) {
   Set newSet;
   
-  Node *current = head; // get all elements in set A
+  Node<T> *current = head; // get all elements in set A
   while (current != NULL) {
     if (!newSet.contains(current->value)) {
       newSet.insert(current->value);
@@ -159,10 +173,11 @@ Set Set::operator+(Set& other) {
   return newSet;
 }
 
-Set Set::operator&(Set& other) {
+template <class T>
+Set<T> Set<T>::operator&(Set& other) {
   Set newSet;
   
-  Node *current = head;
+  Node<T> *current = head;
   while (current != NULL) {
     if (other.contains(current->value)) {
       newSet.insert(current->value);
@@ -172,10 +187,11 @@ Set Set::operator&(Set& other) {
   return newSet;
 }
 
-Set Set::operator-(Set& other) {
+template <class T>
+Set<T> Set<T>::operator-(Set& other) {
   Set newSet;
   
-  Node *current = head;
+  Node<T> *current = head;
   while (current != NULL) {
     if (!other.contains(current->value)) {
       newSet.insert(current->value);

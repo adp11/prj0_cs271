@@ -6,17 +6,19 @@
 
 using namespace std;
 
+template <class T>
 class Node
 {
   public:
  
-    int value;
+    T value;
     Node *next;
 	
-    Node(int initValue);
-    Node(int initValue, Node *initNext);
+    Node(T initValue);
+    Node(T initValue, Node *initNext);
 };
 
+template <class T>
 class Set
 {
   public:
@@ -24,11 +26,11 @@ class Set
     Set();                               // default constructor
     ~Set();                              // destructor
 
-    void insert(int item);  
-    void remove(int item);  
+    void insert(T item);  
+    void remove(T item);  
     int cardinality();
     bool empty();
-    bool contains(int item);     
+    bool contains(T item);     
 
     string to_string();              // return a string representation of the set
 
@@ -41,7 +43,7 @@ class Set
 	
  private:
  
-    Node *head;                           // head of the linked list
+    Node<T> *head;                           // head of the linked list
     int count;                            // number of items in the list
 
     void deallocate();
