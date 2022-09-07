@@ -6,7 +6,7 @@
 
 using namespace std;
 
-template <class T>
+template <typename T>
 class Node
 {
   public:
@@ -18,7 +18,7 @@ class Node
     Node(T initValue, Node *initNext);
 };
 
-template <class T>
+template <typename T>
 class Set
 {
   public:
@@ -43,7 +43,7 @@ class Set
 	
  private:
  
-    Node<T> *head;                           // head of the linked list
+    Node<T> *head;                         // head of the linked list
     int count;                            // number of items in the list
 
     void deallocate();

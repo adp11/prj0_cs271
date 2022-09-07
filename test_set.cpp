@@ -131,7 +131,6 @@ void test_contains() {
   }
 }
 
-// BREAKPOINT OF ADDING/FIXING MORE TESTS
 void test_equality() {
   try {
     Set<int> s;

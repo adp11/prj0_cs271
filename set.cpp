@@ -1,6 +1,7 @@
 #include <sstream>
 #include "set.h"
 
+// Implementations for Node class
 template <typename T>
 Node<T>::Node(T initValue) {
   value = initValue;
@@ -13,6 +14,7 @@ Node<T>::Node(T initValue, Node *initNext) {
   next = initNext;
 }
 
+// Implementations for Set class
 template <typename T>
 Set<T>::Set() {
   head = NULL;
