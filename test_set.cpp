@@ -28,32 +28,32 @@ void test_insert() {
 
 void test_remove() {
   try {
-    Set<int> s;
-    s.remove(4);
+    Set<string> s;
+    s.remove("hello");
     string set_str = s.to_string();
     if (s.to_string() != "") {
       cout << "Incorrect remove result. Expected nothing but got : " << set_str << endl;
     }
 
-    s.insert(1);
-    s.insert(2);
-    s.remove(4);
+    s.insert("hello");
+    s.insert("world");
+    s.remove("hello");
     set_str = s.to_string();
-    if (s.to_string() != "2 1") {
-      cout << "Incorrect remove result. Expected 2 1 but got : " << set_str << endl;
+    if (s.to_string() != "world") {
+      cout << "Incorrect remove result. Expected \"world\" but got : " << set_str << endl;
     }
     
-    s.insert(3);
-    s.insert(4);
-    s.remove(5);
+    s.insert("hi");
+    s.insert("hii");
+    s.remove("hi");
     set_str = s.to_string();
-    if (s.to_string() != "4 3 2 1") {
-      cout << "Incorrect remove result. Expected 4 3 2 1 but got : " << set_str << endl;
+    if (s.to_string() != "hii world") {
+      cout << "Incorrect remove result. Expected \"hii world\" but got : " << set_str << endl;
     }
-    s.remove(3);
+    s.remove("world");
     set_str = s.to_string();
-    if(s.to_string() != "4 2 1") {
-      cout << "Incorrect remove result. Expected 4 2 1 but got : " << set_str << endl;
+    if(s.to_string() != "hii") {
+      cout << "Incorrect remove result. Expected \"hii\" but got : " << set_str << endl;
     }
   } catch (exception &e) {
     cerr << "Error removing from set : " << e.what() << endl;
@@ -113,24 +113,25 @@ void test_empty() {
 
 void test_contains() {
   try {
-    Set<int> s;
-    if(s.contains(5)) {
-      cout << "Incorrectly identified 5 as in the set " << s.to_string() << endl;
+    Set<char> s;
+    if(s.contains('a')) {
+      cout << "Incorrectly identified \'a\' as in the set " << s.to_string() << endl;
     }
-    s.insert(1);
-    s.insert(2);
-    s.insert(3);
-    if(s.contains(5)) {
-      cout << "Incorrectly identified 5 as in the set " << s.to_string() << endl;
+    s.insert('a');
+    s.insert('b');
+    s.insert('c');
+    if(s.contains('z')) {
+      cout << "Incorrectly identified \'z\' as in the set " << s.to_string() << endl;
     }
-    if(!s.contains(2)) {
-      cout << "Incorrectly identified 2 as NOT in the set " << s.to_string() << endl;
+    if(!s.contains('c')) {
+      cout << "Incorrectly identified \'c\' as NOT in the set " << s.to_string() << endl;
     }
   } catch (exception &e) {
     cerr << "Error in determining if value contained in se : " << e.what() << endl;
   }
 }
 
+// BREAKPOINT OF ADDING/FIXING MORE TESTS
 void test_equality() {
   try {
     Set<int> s;
