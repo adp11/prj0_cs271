@@ -1,44 +1,44 @@
 #include <sstream>
 #include "set.h"
 
-template <class T>
+template <typename T>
 Node<T>::Node(T initValue) {
   value = initValue;
   next = NULL;
 }
 
-template <class T>
+template <typename T>
 Node<T>::Node(T initValue, Node *initNext) {
   value = initValue;
   next = initNext;
 }
 
-template <class T>
+template <typename T>
 Set<T>::Set() {
   head = NULL;
   count = 0;
 }
 
-template <class T>
+template <typename T>
 Set<T>::~Set() {
   deallocate();
 }
 
-template <class T>
+template <typename T>
 void Set<T>::insert(T item) {
   if (!this->contains(item)) {
     if (head == NULL) { // set is empty
-        Node<T> *newNode = new Node(item);
+        Node<T> *newNode = new Node<T> (item);
         head = newNode;
       } else {
-        Node<T> *newNode = new Node(item, head);
+        Node<T> *newNode = new Node<T> (item, head);
         head = newNode;
       }
     count++;
   }
 }
 
-template <class T>
+template <typename T>
 void Set<T>::remove(T item) {
   Node<T> *current = head;
   Node<T> *prev = NULL;
@@ -63,17 +63,17 @@ void Set<T>::remove(T item) {
   }
 }
 
-template <class T>
+template <typename T>
 int Set<T>::cardinality() {
   return count;
 }
 
-template <class T>
+template <typename T>
 bool Set<T>::empty() {
   return count == 0;
 }
 
-template <class T>
+template <typename T>
 bool Set<T>::contains(T item) {
   Node<T> *current = head;
   while (current != NULL) {
@@ -85,7 +85,7 @@ bool Set<T>::contains(T item) {
   return false;
 }
 
-template <class T>
+template <typename T>
 string Set<T>::to_string()
 {
   if (head == NULL)
@@ -107,7 +107,7 @@ string Set<T>::to_string()
   return ss.str();
 }
 
-template <class T>
+template <typename T>
 void Set<T>::deallocate()
 {
   Node<T> *nodeToDelete;
@@ -121,7 +121,7 @@ void Set<T>::deallocate()
   }
 }
 
-template <class T>
+template <typename T>
 bool Set<T>::operator==(Set& other) {
   if (count == other.count) {
     Node<T> *current = other.head;
@@ -137,7 +137,7 @@ bool Set<T>::operator==(Set& other) {
   return false;
 }
 
-template <class T>
+template <typename T>
 bool Set<T>::operator<=(Set& other) {
   Node<T> *current = head;
   while (current != NULL) {
@@ -150,11 +150,11 @@ bool Set<T>::operator<=(Set& other) {
   return true;
 }
 
-template <class T>
+template <typename T>
 Set<T> Set<T>::operator+(Set& other) {
   Set newSet;
   
-  Node<T> *current = head; // get all elements in set A
+  Node<T> *current = other.head; // get all elements in set B
   while (current != NULL) {
     if (!newSet.contains(current->value)) {
       newSet.insert(current->value);
@@ -162,7 +162,7 @@ Set<T> Set<T>::operator+(Set& other) {
     current = current->next;
   }
 
-  current = other.head; // get all elements in set B
+  current = head; // get all elements in set A
   while (current != NULL) {
     if (!newSet.contains(current->value)) {
       newSet.insert(current->value);
@@ -173,7 +173,7 @@ Set<T> Set<T>::operator+(Set& other) {
   return newSet;
 }
 
-template <class T>
+template <typename T>
 Set<T> Set<T>::operator&(Set& other) {
   Set newSet;
   
@@ -187,7 +187,7 @@ Set<T> Set<T>::operator&(Set& other) {
   return newSet;
 }
 
-template <class T>
+template <typename T>
 Set<T> Set<T>::operator-(Set& other) {
   Set newSet;
   
